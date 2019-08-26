@@ -1,0 +1,59 @@
+#配置服务器信息
+server:
+  port: 8003
+  #context-path: /study 配置根目录
+
+
+#数据库信息配置
+spring:
+  application:
+    name: microservice-dept  #应用名称
+  datasource:
+    url: jdbc:mysql://localhost:3306/springcloud03?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&verifyServerCertificate=false&useSSL=false
+    username: root
+    password: PSPs5776371
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    #druid连接池配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    # 配置监控统计拦截的filters,去掉监控界面sql无法统计，‘wall’用于防火墙
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    userGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+#Mybatis配置
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.s5.springcloud.entities
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+
+#eureka配置
+eureka:
+  client: #客户端注册进euraka服务列表内
+    service-url:
+#      defaultZone: http://localhost:7001/eureka/ #单机版
+      defaultZone:  http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/ #集群
+  instance:
+    #服务实例名称修改
+    instance-id: microservice-dept8003
+    #访问路径显示IP地址
+    prefer-ip-address: true
+
+info:
+  app.name: springcloud-micoservices
+  company.name: www.s5.com
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}
+
