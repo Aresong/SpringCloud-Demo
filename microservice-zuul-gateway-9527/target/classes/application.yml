@@ -20,7 +20,7 @@ zuul:
   routes:
     mydept.serviceId: microservice-dept
     mydept.path: /mydept/**
-  prefix: /s5
+  prefix: /s5 #公共前缀
 
 info:
   app.name: springcloud-micoservices
