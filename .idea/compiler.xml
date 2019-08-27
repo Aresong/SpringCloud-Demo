@@ -10,6 +10,7 @@
         <module name="microservice-api" />
         <module name="microservice-config-3344" />
         <module name="microservice-config-client-3355" />
+        <module name="microservice-config-eureka-client-7001" />
         <module name="microservice-consumer-dept-80" />
         <module name="microservice-consumer-dept-feign" />
         <module name="microservice-consumer-hystrix-dashboard" />
